@@ -1,50 +1,222 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+        <title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/sky.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h2>Functional Programming</h2>
+                    <h5>in Javascript, React, Redux</h5>
+                </section>
+                <section>
+                    <section>
+                        <div>Imperative vs Declarative</div>
+                        <small>(how vs what)</small>
+                    </section>
+                    <section>
+                        Example 1
+                        <pre><code>
+let cartItems = [
+    {quantity: 11, unitPrice: 1}
+    {quantity: 12}
+    {quantity: 13, unitPrice: 3}
+]
+                        </code></pre>
+                    </section>
+                    <section>
+                        <pre><code>
+let result = 0
+for (var i = 0; i < cartItems.length; i++){
+    let item = cartItems[i]
+    if (typeof item.unitPrice === 'number'){
+        let p = item.quantity * item.price
+        result += p
+    }
+}
+                        </code></pre>       
+                        Imperative
+                    </section>
+                    <section>
+                        <pre><code>
+const result = cartItems
+    .filter(item => typeof item.unitPrice === 'number')
+    .map(item => item.quantity * item.unitPrice)
+    .reduce((prev, current) => prev + current, 0)
+                        </code></pre>              
+                        Declarative
+                    </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+                    <section>
+                        <div>Example 2:</div>
+                        <pre class="html"><code>
+&lt;button id="myButton"&gt;Click Me&lt;/button&gt;
+                        </code></pre>
+                        <pre><code>
+$('#myButton').on('click', onClick)
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+function onClick(){
+    // do something
+}
+                        </code></pre>
+                        jQuery - imperative
+                    </section>
+                    <section>
+                        <pre class=""><code>
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+return <div>
+    &lt;button onClick={ onClick }&gt;Click Me!&lt;/button&gt;
+</div>
+
+function onClick(){
+    // do something
+}
+                        </code></pre>
+                        React - declarative
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <div>Functional Programming is a declarative programming</div>
+                    </section>
+                    <section>
+                        <div>Functional Programming in Javascript is:</div>
+                        <ul>
+                            <li>Use functions as basic blocks.</li>
+                            <li>Avoid changing state and mutate data</li>
+                            <li>Avoid side effects</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <div>Benefits: Make the code easier to read and predictable</div>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        Higer-order function
+                        <pre><code>
+function doSomething(callback){
+    callback()
+}
+
+function doAnything(){
+    return function doEverything() { 
+        [...]
+    }
+}
+                    </code></pre>
+                        </section>
+                    </section>
+
+                    <section>
+                        <section>Higer-order Component (HOC)</section>
+                        <section>
+                            <pre><code>
+const MyComponent = ({data}) => {
+    return <div>
+        {data.map(item => { ... })}
+    </div>
+}
+
+export default connect(state => ({ 
+    data: state.data 
+}))(MyComponent)
+                            </code></pre>
+                            <i>connect</i> in <i>react-redux</i>
+                        </section>
+                        <section>
+                            <pre><code>
+class MyComponent extends React.Component{
+    handleClickOutside(){
+        ...
+    }
+    render(){
+        ...
+    }
+}
+
+export default onClickOutside(MyComponent)
+                            </code></pre>
+                            <i>react-onclickoutside</i>
+                        </section>
+                        <section>
+                            <pre><code>
+class MyPage extends React.Component{
+    render(){
+        ...
+    }
+}
+
+export default checkPermission(["admin", "user"], MyComponent)
+                            </code></pre>
+                            A solution for checking permission per page
+                        </section>
+                        <section>
+                            <pre><code>
+class MyComponent extends React.Component{
+    render(){
+        return &lt;div style={[styles.style1, styles.style2]}&gt;
+            
+        &lt;/div&gt;
+    }
+}
+
+export default Radium(MyComponent)
+                            </code></pre>
+                            <i>Radium</i> for inline style
+                        </section>
+                    </section>
+                </section>
+
+                <section>
+                    <section>Currying</section>
+                    <section>
+                        <pre><code>
+state.dispatch(action)
+                        </code></pre>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
 </html>
