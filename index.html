@@ -69,53 +69,78 @@ const result = cartItems
                     <section>
                         <div>Example 2:</div>
                         <pre class="html"><code>
-&lt;button id="myButton"&gt;Click Me&lt;/button&gt;
+&lt;button id="myButton"&gt;Click Me!&lt;/button&gt;
                         </code></pre>
                         <pre><code>
 $('#myButton').on('click', onClick)
 
 function onClick(){
-    // do something
+    $(this).toggleClass('active')
+    if ($(this).hasClass('active')){
+        $(this).html('Cancel')
+    }else{
+        $(this).html('Click Me!')
+    }
 }
                         </code></pre>
-                        jQuery - imperative
+                        jQuery
                     </section>
                     <section>
-                        <pre class=""><code>
-
-return <div>
-    &lt;button onClick={ onClick }&gt;Click Me!&lt;/button&gt;
-</div>
-
-function onClick(){
-    // do something
+                        <pre class=""><code>class MyComponent extends React.Component{
+    state = {active: false}
+    onClick(){
+        this.setState({
+            active: !this.state.active
+        })
+    }
+    render(){
+        return &lt;div&gt;
+            &lt;button 
+                className={this.state.active ? "active" : ""}
+                onClick={ () => this.onClick() }&gt;
+                {this.state.active ? "Cancel" : "Click Me!"}
+            &lt;/button&gt;
+        &lt;/div&gt;    
+    }
 }
+                        
                         </code></pre>
-                        React - declarative
+                        React
                     </section>
                 </section>
 
+                <!-- FP in Javascript overall intro -->
                 <section>
                     <section>
                         <div>Functional Programming is a declarative programming</div>
                     </section>
                     <section>
-                        <div>Functional Programming in Javascript is:</div>
+                        <div>Bring many ideas from <b>Function Programming</b> into Javascript, make our code more <i>declarative</i>.</div>
+                    </section>
+                    <section>
+                        <div>Use functions as basic blocks</div>
                         <ul>
-                            <li>Use functions as basic blocks.</li>
-                            <li>Avoid changing state and mutate data</li>
-                            <li>Avoid side effects</li>
+                            <li style="color: green">ES6 (filter, map, reduce, ...)</li>
+                            <li>Lodash</li>
+                            <li style="color: red">Ramda (Curry)</li>
+                            <li>React/Redux: Stateless component, <span style="color: red">Higher Order Component (HOC)</span></li>
                         </ul>
                     </section>
                     <section>
-                        <div>Benefits: Make the code easier to read and predictable</div>
+                        <div>Avoid changing state and mutate data (immutable)</div>
+                    </section>
+                    <section>
+                        <img src="img/reducer-sample.png"/>
+                    </section>
+                    <section>
+                        <div>Eliminate side effect (<span style="color: red">pure function</span>, redux-saga)</div>
                     </section>
 
                 </section>
 
                 <section>
                     <section>
-                        Higer-order function
+                        Higher-order function
                         <pre><code>
 function doSomething(callback){
     callback()
@@ -129,9 +154,10 @@ function doAnything(){
                     </code></pre>
                         </section>
                     </section>
-
+                    
+                    <!-- HOC -->
                     <section>
-                        <section>Higer-order Component (HOC)</section>
+                        <section>Higher-order Component (HOC)</section>
                         <section>
                             <pre><code>
 const MyComponent = ({data}) => {
@@ -169,7 +195,7 @@ class MyPage extends React.Component{
     }
 }
 
-export default checkPermission(["admin", "user"], MyComponent)
+export default checkPermission(["admin", "user"], MyPage)
                             </code></pre>
                             A solution for checking permission per page
                         </section>
@@ -190,12 +216,48 @@ export default Radium(MyComponent)
                     </section>
                 </section>
 
+                <!-- Ramda -->
                 <section>
-                    <section>Currying</section>
+                    <section>Ramda</section>
                     <section>
-                        <pre><code>
-state.dispatch(action)
-                        </code></pre>
+                        $$ (f \circ g)(x) = f(g(x)) $$
+                        <div style="margin-top: 20px"><small>Compose</small></div>
+                    </section>
+                    <section>Curry</section>
+                </section>
+
+                <section>
+                    <section>Redux Middleware</section>
+                </section>
+
+                <section>Pure functions</section>
+
+                <section>
+                    <section>
+                        <h3>Conclusion</h3>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>Strange ideas around</li>
+                            <li>Took <b>time</b> to have best approach</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>Cleaner and more predictable code</li>
+                            <li>Understand more about React, Redux</li>
+                            <li>Get useful concepts to learn other functional programming languages.</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <div>Haskell</div>
+                        <div>Elm</div>
+                        <div>ClojureScript</div>
+                        <div>Scala</div>
+                        <div>F#</div>
                     </section>
                 </section>
             </div>
@@ -208,13 +270,18 @@ state.dispatch(action)
             // More info https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
                 history: true,
-
+                math: {
+                    mathjax: '/MathJax-2.7.0/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                    // find symbol here: http://detexify.kirelabs.org/classify.html
+                },
                 // More info https://github.com/hakimel/reveal.js#dependencies
                 dependencies: [
                     { src: 'plugin/markdown/marked.js' },
                     { src: 'plugin/markdown/markdown.js' },
                     { src: 'plugin/notes/notes.js', async: true },
-                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/math/math.js', async: true }
                 ]
             });
         </script>
