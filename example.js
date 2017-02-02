@@ -6,18 +6,8 @@ const cartItems = [
     {quantity: 13, unitPrice: 3}
 ]
 
-console.log(R.compose( 
-    R.reduce(R.add, 0), 
-    R.map(
-        R.compose(
-            R.apply(R.multiply),
-            R.props(['quantity', 'unitPrice'])
-        )
-    ), 
-    R.filter(
-        R.compose(
-            R.is(Number), 
-            R.prop('unitPrice')
-        )
-    ) 
-)(cartItems))
+const result = cartItems
+    .filter(item => typeof item.unitPrice === 'number')
+    .map(item => item.quantity * item.unitPrice)
+    .reduce((prev, current) => prev + current, 0)
+console.log(result)
