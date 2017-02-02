@@ -227,10 +227,59 @@ export default Radium(MyComponent)
                 </section>
 
                 <section>
-                    <section>Redux Middleware</section>
+                    <section>
+                        <pre><code>
+const loggerMiddleware = store => next => action => {
+  console.log('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  return result
+}
+                        </code></pre>
+                        <div>Redux Middleware Sample</div>
+                    </section>
+                    <section>
+                        <pre><code>
+// Warning: Naïve implementation!
+// That's *not* Redux API.
+
+function applyMiddleware(store, middlewares) {
+  middlewares = middlewares.slice()
+  middlewares.reverse()
+
+  let dispatch = store.dispatch
+  middlewares.forEach(middleware =>
+    dispatch = middleware(store)(dispatch)
+  )
+
+  return Object.assign({}, store, { dispatch })
+}
+                        </code></pre>
+                        <div>Source: http://redux.js.org/docs/advanced/Middleware.html</div>
+                    </section>
                 </section>
 
-                <section>Pure functions</section>
+                <section>
+                    <section>
+                        <h4>Pure functions</h4>
+                        <ul>
+                            <li>$ Y = F(X): \forall X, \exists! Y  $</li>
+                            <li>No side effect</li>
+                            <ul style="list-style-type: none">
+                                <li>$ \Rightarrow $Relies on no external mutable state.</li>
+                                <li>$ \Rightarrow $No input mutation</li>
+                            </ul>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>Benefits</h4>
+                        <ul>
+                            <li>Predictable</li>
+                            <li>Easy to refactor and test</li>
+                            <li>No concurrency issue when run in parallel</li>
+                        </ul>
+                    </section>
+                </section>
 
                 <section>
                     <section>
@@ -253,9 +302,9 @@ export default Radium(MyComponent)
 
                 <section>
                     <section>
-                        <div>Haskell</div>
-                        <div>Elm</div>
+                        <div><a href="https://www.youtube.com/watch?v=LnX3B9oaKzw">Haskell</a></div>
                         <div>ClojureScript</div>
+                        <div>Elm</div>
                         <div>Scala</div>
                         <div>F#</div>
                     </section>
