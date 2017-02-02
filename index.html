@@ -37,8 +37,8 @@
                         Example 1
                         <pre><code>
 let cartItems = [
-    {quantity: 11, unitPrice: 1}
-    {quantity: 12}
+    {quantity: 11, unitPrice: 1},
+    {quantity: 12},
     {quantity: 13, unitPrice: 3}
 ]
                         </code></pre>
@@ -49,7 +49,7 @@ let result = 0
 for (var i = 0; i < cartItems.length; i++){
     let item = cartItems[i]
     if (typeof item.unitPrice === 'number'){
-        let p = item.quantity * item.price
+        let p = item.quantity * item.unitPrice
         result += p
     }
 }
