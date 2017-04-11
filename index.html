@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>Functional Programming in JS</title>
+        <title>Software Entropy</title>
 
         <link rel="stylesheet" href="css/reveal.css">
-        <link rel="stylesheet" href="css/theme/sky.css">
+        <link rel="stylesheet" href="css/theme/beige.css">
 
         <!-- Theme used for syntax highlighting of code -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -25,290 +25,130 @@
         <div class="reveal">
             <div class="slides">
                 <section>
-                    <h2>Functional Programming</h2>
-                    <h5>in Javascript, React, Redux</h5>
+                    <h2>Software Entropy </h2>
+                    <h3>&amp;</h3>
+                    <h2>How to Deal with It</h2>
                 </section>
                 <section>
                     <section>
-                        <div>Imperative vs Declarative</div>
-                        <small>(how vs what)</small>
+                        <img src="img/list-data.png"/>
                     </section>
                     <section>
-                        Example 1
-                        <pre><code>
-let cartItems = [
-    {quantity: 11, unitPrice: 1},
-    {quantity: 12},
-    {quantity: 13, unitPrice: 3}
-]
-                        </code></pre>
+                        <ul style="list-style-type: decimal;">
+                            <li>List all data</li>
+                            <li>Filter by "name"</li>
+                            <li>Filter by "status"</li>
+                            <li>Filter by "updated time"</li>
+                        </ul>
                     </section>
                     <section>
-                        <pre><code>
-let result = 0
-for (var i = 0; i < cartItems.length; i++){
-    let item = cartItems[i]
-    if (typeof item.unitPrice === 'number'){
-        let p = item.quantity * item.unitPrice
-        result += p
-    }
-}
-                        </code></pre>       
-                        Imperative
+                        <ul style="list-style-type: none">
+                            <li>$t_1$</li>
+                            <li>$t_2$</li>
+                            <li>$t_3$</li>
+                            <li>$t_4 + \Delta_4$</li>
+                            <li><hr/></li>
+                            <li>$\sum t + \sum\Delta$</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <ul>
+                        <li>Disorder</li>
+                        <li>Unpredictable</li>
+                        <li>Accumulate through time</li>
+                    </ul>
+                </section>
+                <section>
+                    <section>Where is it come from?</section>
+                    <section>
+                        <ul>
+                            <li>Unique and unstable ideas of customers</li>
+                            <li>Creativity of us - developers</li>
+                            <li>From the nature of distinction of software system</li>
+                            <li>...</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        Divide and conquer ???
                     </section>
                     <section>
-                        <pre><code>
-const result = cartItems
-    .filter(item => typeof item.unitPrice === 'number')
-    .map(item => item.quantity * item.unitPrice)
-    .reduce((prev, current) => prev + current, 0)
-                        </code></pre>              
-                        Declarative
-                    </section>
-
-                    <section>
-                        <div>Example 2:</div>
-                        <pre class="html"><code>
-&lt;button id="myButton"&gt;Click Me!&lt;/button&gt;
-                        </code></pre>
-                        <pre><code>
-$('#myButton').on('click', onClick)
-
-function onClick(){
-    $(this).toggleClass('active')
-    if ($(this).hasClass('active')){
-        $(this).html('Cancel')
-    }else{
-        $(this).html('Click Me!')
-    }
-}
-                        </code></pre>
-                        jQuery
+                        Loose coupling, high cohesion
                     </section>
                     <section>
-                        <pre class=""><code>class MyComponent extends React.Component{
-    state = {active: false}
-    onClick(){
-        this.setState({
-            active: !this.state.active
-        })
-    }
-    render(){
-        return &lt;div&gt;
-            &lt;button 
-                className={this.state.active ? "active" : ""}
-                onClick={ () => this.onClick() }&gt;
-                {this.state.active ? "Cancel" : "Click Me!"}
-            &lt;/button&gt;
-        &lt;/div&gt;    
-    }
-}
+                        Coupling
+                    </section>
+                    <section>
+                        Cohesion
+                    </section>
+                    <section>
+                        Project structure
+                    </section>
+                    <section>
+                        <ul>
+                            <li>Easier to read</li>
+                            <li>Easier to maintain</li>
+                            <li>Can run on parralel efficiently</li>
+                            <li>Can apply beyond software system</li>
+                        </ul>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        Don't Repeat Yourself
+                        <br/>(DRY)
+                    </section>
+                    <section>
                         
-                        </code></pre>
-                        React
-                    </section>
-                </section>
-
-                <!-- FP in Javascript overall intro -->
-                <section>
-                    <section>
-                        <div>Functional Programming is a declarative programming</div>
-                    </section>
-                    <section>
-                        <div>Bring many ideas from <b>Function Programming</b> into Javascript, make our code more <i>declarative</i>.</div>
-                    </section>
-                    <section>
-                        <div>Use functions as basic blocks</div>
-                        <ul>
-                            <li style="color: green">ES6 (filter, map, reduce, ...)</li>
-                            <li>Lodash</li>
-                            <li style="color: red">Ramda (Currying)</li>
-                            <li>React/Redux: Stateless component, <span style="color: red">Higher Order Component (HOC)</span></li>
-                        </ul>
-                    </section>
-                    <section>
-                        <div>Avoid changing state and mutate data (immutable)</div>
-                    </section>
-                    <section>
-                        <img src="img/reducer-sample.png"/>
-                    </section>
-                    <section>
-                        <div>Eliminate side effect (<span style="color: red">pure function</span>, redux-saga)</div>
-                    </section>
-
-                </section>
-
-                <section>
-                    <section>
-                        Higher-order function
-                        <pre><code>
-function doSomething(callback){
-    callback()
-}
-
-function doAnything(){
-    return function doEverything() { 
-        [...]
-    }
-}
-                    </code></pre>
-                        </section>
-                    </section>
-                    
-                    <!-- HOC -->
-                    <section>
-                        <section>Higher-order Component (HOC)</section>
-                        <section>
-                            <pre><code>
-const MyComponent = ({data}) => {
-    return <div>
-        {data.map(item => { ... })}
-    </div>
-}
-
-export default connect(state => ({ 
-    data: state.data 
-}))(MyComponent)
-                            </code></pre>
-                            <i>connect</i> in <i>react-redux</i>
-                        </section>
-                        <section>
-                            <pre><code>
-class MyComponent extends React.Component{
-    handleClickOutside(){
-        ...
-    }
-    render(){
-        ...
-    }
-}
-
-export default onClickOutside(MyComponent)
-                            </code></pre>
-                            <i>react-onclickoutside</i>
-                        </section>
-                        <section>
-                            <pre><code>
-class MyPage extends React.Component{
-    render(){
-        ...
-    }
-}
-
-export default checkPermission(["admin", "user"], MyPage)
-                            </code></pre>
-                            A solution for checking permission per page
-                        </section>
-                        <section>
-                            <pre><code>
-class MyComponent extends React.Component{
-    render(){
-        return &lt;div style={[styles.style1, styles.style2]}&gt;
-            
-        &lt;/div&gt;
-    }
-}
-
-export default Radium(MyComponent)
-                            </code></pre>
-                            <i>Radium</i> for inline style
-                        </section>
-                    </section>
-                </section>
-
-                <!-- Ramda -->
-                <section>
-                    <section>Ramda</section>
-                    <section>
-                        $$ (f \circ g)(x) = f(g(x)) $$
-                        <div style="margin-top: 20px"><small>Compose</small></div>
-                    </section>
-                    <section>Currying</section>
-                </section>
-
-                <section>
-                    <section>
-                        <pre><code>
-const loggerMiddleware = store => next => action => {
-  console.log('dispatching', action)
-  let result = next(action)
-  console.log('next state', store.getState())
-  return result
-}
-                        </code></pre>
-                        <div>Redux Middleware Sample</div>
-                    </section>
-                    <section>
-                        <pre><code>
-// Warning: Naïve implementation!
-// That's *not* Redux API.
-
-function applyMiddleware(store, middlewares) {
-  middlewares = middlewares.slice()
-  middlewares.reverse()
-
-  let dispatch = store.dispatch
-  middlewares.forEach(middleware =>
-    dispatch = middleware(store)(dispatch)
-  )
-
-  return Object.assign({}, store, { dispatch })
-}
-                        </code></pre>
-                        <div><small> Source: http://redux.js.org/docs/advanced/Middleware.html</small></div>
                     </section>
                 </section>
 
                 <section>
+                    <section>(Unit) Test</section>
                     <section>
-                        <h4>Pure functions</h4>
-                        <ul>
-                            <li>$ Y = F(X): \forall X, \exists! Y  $</li>
-                            <li>No side effect</li>
-                            <ul style="list-style-type: none">
-                                <li>$ \Rightarrow $Relies on no external mutable state.</li>
-                                <li>$ \Rightarrow $No input mutation</li>
-                            </ul>
-                        </ul>
+                        Anything that can go wrong, will go wrong.
+                        <div style="text-align: right">- Murphy's law</div>
                     </section>
                     <section>
-                        <h4>Benefits</h4>
-                        <ul>
-                            <li>Predictable</li>
-                            <li>Easy to refactor and unit test</li>
-                            <li>Can improve performance by memoization</li>
-                            <li>No concurrency issue when run in parallel</li>
-                        </ul>
+                        $\rightarrow$ Loose coupling, high cohesion.
+                    </section>
+                    <section>
+                        $\rightarrow$ <a href="http://isfiberreadyyet.com/" target="_blank">Show progress</a>
+                    </section>
+                    <section>
+                        $\rightarrow$ Courage code reuse.
+                    </section>
+                    <section>
+                        *Demo snapshot test*
                     </section>
                 </section>
 
                 <section>
-                    <section>
-                        <h3>Conclusion</h3>
-                    </section>
-                    <section>
-                        <ul>
-                            <li>Strange ideas around</li>
-                            <li>Took <b>time</b> to have best approach</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <ul>
-                            <li>Cleaner and more predictable code</li>
-                            <li>Understand more about React, Redux</li>
-                            <li>Get useful concepts to learn other functional programming languages.</li>
-                        </ul>
-                    </section>
+                    Read!
                 </section>
 
                 <section>
-                    <section>
-                        <div><a href="https://www.youtube.com/watch?v=LnX3B9oaKzw">Haskell</a></div>
-                        <div>ClojureScript</div>
-                        <div>Elm</div>
-                        <div>Scala</div>
-                        <div>F#</div>
-                    </section>
+                    <div>Summary</div>
+                    <ul>
+                        <li>Loose coupling, high cohesion</li>
+                        <li>DRY</li>
+                        <li>(Unit) Test</li>
+                        <li>...</li>
+                        <li><a target="_blank" href="http://worrydream.com/refs/Brooks-NoSilverBullet.pdf">
+                            No silver bullet
+                        </a></li>
+                    </ul>
+                </section>
+                <section>
+                    <div><a
+                                target="_blank" 
+                                href="http://wiki.c2.com/?XpSimplicityRules">
+                                Xp Simplicity Rules
+                            </a>
+                    </div>
                 </section>
             </div>
         </div>
