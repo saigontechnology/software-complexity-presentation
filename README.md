@@ -1,6 +1,6 @@
-# Functional Programming in Javascript Presentation
+# Software Entropy Presentation
 
-[See here](https://stssoftware.github.io/functional-programming-in-js-presentation/)
+(Not done yet)
 
 ## Techs
  * Reveal.js
