@@ -78,10 +78,24 @@
                         Loose coupling, high cohesion
                     </section>
                     <section>
-                        Coupling
+                        <div style="display: flex; flex-direction: row">
+                            <img style="width: 50%; height: 50%" src="img/loose-coupling.png">
+                            <img style="width: 50%; height: 50%" src="img/high-coupling.png">
+                        </div>
+                        <div style="display: flex; flex-direction: row">
+                            <div style="color: green">Good</div>
+                            <div style="color: red">Bad</div>
+                        </div>
                     </section>
                     <section>
-                        Cohesion
+                        <div style="display: flex; flex-direction: row">
+                            <img style="width: 50%; height: 50%" src="img/high-cohesion.png">
+                            <img style="width: 50%; height: 50%" src="img/low-cohesion.png">    
+                        </div>
+                        <div style="display: flex; flex-direction: row">
+                            <div style="color: green">Good</div>
+                            <div style="color: red">Bad</div>
+                        </div>
                     </section>
                     <section>
                         Project structure
@@ -95,11 +109,19 @@
                         </ul>
                     </section>
                 </section>
-                
+
                 <section>
                     <section>
-                        Don't Repeat Yourself
-                        <br/>(DRY)
+                        Don't Repeat Yourself ?
+                        - [little bit] you repetitive code is evil
+                        - 
+                        - DRY --> abstraction --> create new layer with new information and hide origin information
+                        - Repetitive code benifits: repeat with predictable work, can hire more to make work done in parallel
+                        - Abstraction: 
+                            + more concept, more entropy, 
+                            + more to transfer,
+                            + more efford to maintain with unpredictable task.
+                        
                     </section>
                     <section>
                         
@@ -109,8 +131,27 @@
                 <section>
                     <section>(Unit) Test</section>
                     <section>
-                        Anything that can go wrong, will go wrong.
-                        <div style="text-align: right">- Murphy's law</div>
+                        Murphy's law: "Anything that can go wrong, will go wrong."
+                    </section>
+                    <section>
+                        <pre class="javascript"><code>
+function handleData(data){
+    let isToday
+    if (moment()){
+        isToday = true
+    }
+    if (true){
+
+    }
+    if (false){
+
+    }
+
+    return {
+        isToday
+    }
+}
+                        </code></pre>
                     </section>
                     <section>
                         $\rightarrow$ Loose coupling, high cohesion.
@@ -119,7 +160,7 @@
                         $\rightarrow$ <a href="http://isfiberreadyyet.com/" target="_blank">Show progress</a>
                     </section>
                     <section>
-                        $\rightarrow$ Courage code reuse.
+                        $\rightarrow$ Courage code reuse ($\rightarrow$ DRY).
                     </section>
                     <section>
                         *Demo snapshot test*
@@ -131,23 +172,27 @@
                 </section>
 
                 <section>
-                    <div>Summary</div>
-                    <ul>
-                        <li>Loose coupling, high cohesion</li>
-                        <li>DRY</li>
-                        <li>(Unit) Test</li>
-                        <li>...</li>
-                        <li><a target="_blank" href="http://worrydream.com/refs/Brooks-NoSilverBullet.pdf">
+                    <section>
+                        <div>Summary</div>
+                        <ul>
+                            <li>Loose coupling, high cohesion</li>
+                            <li>DRY</li>
+                            <li>(Unit) Test</li>
+                            <li>...</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <a target="_blank" href="http://worrydream.com/refs/Brooks-NoSilverBullet.pdf">
                             No silver bullet
-                        </a></li>
-                    </ul>
+                        </a>
+                    </section>
                 </section>
                 <section>
                     <div><a
-                                target="_blank" 
-                                href="http://wiki.c2.com/?XpSimplicityRules">
+                        target="_blank" 
+                        href="http://wiki.c2.com/?XpSimplicityRules">
                                 Xp Simplicity Rules
-                            </a>
+                        </a>
                     </div>
                 </section>
             </div>
