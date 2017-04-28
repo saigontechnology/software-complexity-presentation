@@ -1,6 +1,4 @@
-# Software Entropy Presentation
-
-(Not done yet)
+# Software Complexity Presentation
 
 ## Techs
  * Reveal.js
