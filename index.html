@@ -20,53 +20,91 @@
             link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
             document.getElementsByTagName( 'head' )[0].appendChild( link );
         </script>
+        <style> img{border: none!important; box-shadow: none!important}</style>
     </head>
     <body>
         <div class="reveal">
             <div class="slides">
                 <section>
-                    <h2>Software Entropy </h2>
-                    <h3>&amp;</h3>
-                    <h2>How to Deal with It</h2>
+                    <h2>Software Complexity</h2>
                 </section>
                 <section>
                     <section>
-                        <img src="img/list-data.png"/>
+                        <h3>Estimate</h3>
+                        <table>
+                            <tr>
+                                <td>Feature 1:</td><td align="center">$ t_1 $</td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>Feature 2:</td><td align="center">$ t_2 $</td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>Feature 3:</td><td align="center">$ t_3 $</td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: center">...</td>
+                            </tr>
+                            <tr>
+                                <td>Feature n:</td><td align="center">$ t_n $</td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>Total:</td><td align="center">$\sum t$</td><td>+</td><td> Buffer </td>
+                            </tr>
+                        </table>
                     </section>
                     <section>
-                        <ul style="list-style-type: decimal;">
-                            <li>List all data</li>
-                            <li>Filter by "name"</li>
-                            <li>Filter by "status"</li>
-                            <li>Filter by "updated time"</li>
-                        </ul>
+                        <h3>Actual</h3>
+                        <table>
+                            <tr>
+                                <td>Feature 1:</td><td align="center">$ t_1 $</td><td></td><td></td>
+                            </tr>
+                            <tr>
+                                <td>Feature 2:</td><td align="center">$ t_2 $</td><td>+</td><td>$\Delta_1 $</td>
+                            </tr>
+                            <tr>
+                                <td>Feature 3:</td><td align="center">$ t_3 $</td><td>+</td><td>$\Delta_2 $</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: center">...</td>
+                            </tr>
+                            <tr>
+                                <td>Feature n:</td><td align="center">$ t_n $</td><td>+</td><td>$\Delta_{n-1}$</td>
+                            </tr>
+                            <tr>
+                                <td>Total:</td><td align="center">$\sum t  $</td><td>+</td><td>$\sum \Delta$</td>
+                            </tr>
+                        </table>
                     </section>
                     <section>
-                        <ul style="list-style-type: none">
-                            <li>$t_1$</li>
-                            <li>$t_2$</li>
-                            <li>$t_3$</li>
-                            <li>$t_4 + \Delta_4$</li>
-                            <li><hr/></li>
-                            <li>$\sum t + \sum\Delta$</li>
-                        </ul>
+                        <table>
+                            <tr>
+                                <td>Total Estimate:</td><td align="center">$\sum t$</td><td>+</td><td><span style="color: red"> Buffer</span> </td>
+                            </tr>
+                            <tr>
+                                <td>Total Actual:</td><td align="center">$\sum t$</td><td>+</td><td><span style="color: red">$\sum \Delta$</span></td>
+                            </tr>
+                        </table>
                     </section>
                 </section>
                 <section>
+                    <div>$\Delta$ is:</div>
                     <ul>
-                        <li>Disorder</li>
-                        <li>Unpredictable</li>
+                        <li>Very hard (or impossible) to measure</li>
                         <li>Accumulate through time</li>
+                        <li>Make every work less efficient</li>
                     </ul>
+                </section>
+                <section>
+                    <h3>Software Complexity</h3>
+                    <h3>Software Entropy</h3>
+                    <h3>Technical Dept</h3>
                 </section>
                 <section>
                     <section>Where is it come from?</section>
                     <section>
                         <ul>
-                            <li>Unique and unstable ideas of customers</li>
-                            <li>Creativity of us - developers</li>
-                            <li>From the nature of distinction of software system</li>
-                            <li>...</li>
+                            <li>From customers</li>
+                            <li style="color: red">From developers</li>                            <li>...</li>
                         </ul>
                     </section>
                 </section>
@@ -79,51 +117,138 @@
                     </section>
                     <section>
                         <div style="display: flex; flex-direction: row">
-                            <img style="width: 50%; height: 50%" src="img/loose-coupling.png">
                             <img style="width: 50%; height: 50%" src="img/high-coupling.png">
+                            <img style="width: 50%; height: 50%" src="img/loose-coupling.png">
                         </div>
                         <div style="display: flex; flex-direction: row">
-                            <div style="color: green">Good</div>
-                            <div style="color: red">Bad</div>
+                            <div style="color: red; flex: 1">Bad</div>
+                            <div style="color: green; flex: 1">Better</div>
                         </div>
                     </section>
                     <section>
-                        <div style="display: flex; flex-direction: row">
-                            <img style="width: 50%; height: 50%" src="img/high-cohesion.png">
-                            <img style="width: 50%; height: 50%" src="img/low-cohesion.png">    
-                        </div>
-                        <div style="display: flex; flex-direction: row">
-                            <div style="color: green">Good</div>
-                            <div style="color: red">Bad</div>
-                        </div>
-                    </section>
-                    <section>
-                        Project structure
-                    </section>
-                    <section>
+                        <div>Loose coupling</div>
                         <ul>
-                            <li>Easier to read</li>
-                            <li>Easier to maintain</li>
-                            <li>Can run on parralel efficiently</li>
-                            <li>Can apply beyond software system</li>
+                            <li>Easier to maintain (fix bug, update/replace module)</li>
+                            <li>Able to run task in parallel</li>
+                            <li>Lesser integration time</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <div style="display: flex; flex-direction: row">
+                            <img style="width: 50%; height: 50%" src="img/low-cohesion.png">
+                            <img style="width: 50%; height: 50%" src="img/high-cohesion.png">
+                        </div>
+                        <div style="display: flex; flex-direction: row">
+                            <div style="color: red; flex: 1">Bad</div>
+                            <div style="color: green; flex: 1">Better</div>
+                        </div>
+                    </section>
+                    <section>
+                        <h5>Client-side ------------- Server-side</h5>
+                    </section>
+                    <section>
+                        <div>High cohesion</div>
+                        <ul>
+                            <li>Easier to read and understand</li>
+                            <li>Easier to navigate</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h5>Project structure</h5>
+                        <ul>
+                            <li>modules</li>
+                            <ul>
+                                <li>user</li>
+                                <ul>
+                                    <li>actions</li>
+                                    <li>components</li>
+                                    <li>reducers</li>
+                                    <li>services</li>
+                                    <li>index.js</li>
+                                </ul>
+                                <li>product</li>
+                            </ul>
                         </ul>
                     </section>
                 </section>
 
                 <section>
                     <section>
-                        Don't Repeat Yourself ?
-                        - [little bit] you repetitive code is evil
-                        - 
-                        - DRY --> abstraction --> create new layer with new information and hide origin information
-                        - Repetitive code benifits: repeat with predictable work, can hire more to make work done in parallel
-                        - Abstraction: 
-                            + more concept, more entropy, 
-                            + more to transfer,
-                            + more efford to maintain with unpredictable task.
-                        
+                        Don't Repeat Yourself (DRY) <br/>$\And$<br/> Abstraction
                     </section>
                     <section>
+                        <img src="img/dupplicated-code.png">
+                        <div>Repetitive/boilerplate code</div>
+                    </section>
+                    <section>
+                        <table>
+                            <tr>
+                                <th>PROS</th><th>CON</th>
+                            </tr>
+                            <tr>
+                                <td>Loose coupling</td><td>Repetitive task</td>
+                            </tr>
+                            <tr>
+                                <td></td><td>Low cohesion</td>
+                            </tr>
+                            <tr>
+                                <td>Used known API</td>
+                                <td>Much boilerplate</td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section>
+                        <img src="img/over-reuse.png">
+                        <div>Reused/Abstracted code</div>
+                    </section>
+                    <section>
+                        <table>
+                            <tr>
+                                <th>PROS</th><th>CON</th>
+                            </tr>
+                            <tr>
+                                <td>Less repetitive code</td><td>Tight coupling</td>
+                            </tr>
+                            <tr>
+                                <td></td><td>Low cohesion</td>
+                            </tr>
+                            <tr>
+                                <td>Can be more verbose</td>
+                                <td>Can be less verbose</td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section>
+                        <pre class="javascript" style="width: 100%"><code>
+function lowCohesionFunction(param1, param2, param3, param4, ...){
+    if (...){
+        
+        [...]
+
+    } else if (...){
+        
+        [...]
+
+    } else if (...){
+        
+        [...]
+
+    }
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h4>Repeat or not repeat ?</h4> 
+                        <h4>Abstract or not abstract?</h4>
+                    </section>
+                    <section>Refactor</section>
+                    <section>
+                        <h4>Advice</h4>
+                        <ul>
+                            <li>In React: Reuse component should be compact.</li>
+                            <li>Abstraction should have documentation and clear APIs</li>
+                            <li>Reused code should be unit tested</li>
+                        </ul>
                         
                     </section>
                 </section>
@@ -134,41 +259,83 @@
                         Murphy's law: "Anything that can go wrong, will go wrong."
                     </section>
                     <section>
-                        <pre class="javascript"><code>
-function handleData(data){
-    let isToday
-    if (moment()){
-        isToday = true
-    }
-    if (true){
-
-    }
-    if (false){
-
-    }
-
-    return {
-        isToday
-    }
-}
-                        </code></pre>
+                        <img src="img/function-a-b.png">
+                        <table border="1px">
+                            <tr>
+                                <td></td>
+                                <td>Test X only</td>
+                                <td>Test A, B then X</td>
+                            </tr>
+                            <tr>
+                                <td>Test cases:</td>
+                                <td>$5 \times 5 = 25$</td>
+                                <td>$5 + 5 + 2 = 12$</td>
+                            </tr>
+                        </table>
                     </section>
                     <section>
-                        $\rightarrow$ Loose coupling, high cohesion.
+                        <h3>$\rightarrow$ save time.</h3>
+                    </section>
+                    <section>
+                        <img src="img/system-hight-coupling.png">
+                    </section>
+                    <section>
+                        $\rightarrow$ Loose coupling
+                    </section>
+                    <section>
+                        <div style="display: flex; flex-direction: row">
+                            <pre class="javascript"><code>
+function handleData(data){
+
+    if (/*...*/){
+        // ...
+    }
+
+    if (/*...*/){
+        // ...
+    }
+
+    return data
+}
+                        </code></pre>
+                        <div style="width: 10px"></div>
+                        <pre class="javascript"><code>
+function handleData(data){
+
+    doSomethingFirst(data)
+
+    doSomethingSecond(data)
+
+    return data
+}
+
+function doSomethingFirst(data){ /*...*/ }
+
+function doSomethingSecond(data){ /*...*/ }
+                        </code></pre>
+                        </div>
+                    </section>
+                    <section>
+                        $\rightarrow$ High cohesion.
                     </section>
                     <section>
                         $\rightarrow$ <a href="http://isfiberreadyyet.com/" target="_blank">Show progress</a>
                     </section>
                     <section>
-                        $\rightarrow$ Courage code reuse ($\rightarrow$ DRY).
+                        <pre class="javascript"><code>
+function someWhereInTheApp(){
+    //...
+
+    callSupperBuggyAndHighlyReusedFunction()
+
+    //...
+}
+                        </code></pre>
+                        $\rightarrow$ Courage code reuse ($\rightarrow$ DRY)
                     </section>
                     <section>
-                        *Demo snapshot test*
+                        <code>npm test</code>
                     </section>
-                </section>
-
-                <section>
-                    Read!
                 </section>
 
                 <section>
@@ -176,14 +343,14 @@ function handleData(data){
                         <div>Summary</div>
                         <ul>
                             <li>Loose coupling, high cohesion</li>
-                            <li>DRY</li>
+                            <li>DRY and abstraction (?)</li>
                             <li>(Unit) Test</li>
                             <li>...</li>
                         </ul>
                     </section>
                     <section>
                         <a target="_blank" href="http://worrydream.com/refs/Brooks-NoSilverBullet.pdf">
-                            No silver bullet
+                            No silver bullet - Fred Brooks
                         </a>
                     </section>
                 </section>
@@ -191,7 +358,7 @@ function handleData(data){
                     <div><a
                         target="_blank" 
                         href="http://wiki.c2.com/?XpSimplicityRules">
-                                Xp Simplicity Rules
+                            Xp Simplicity Rules
                         </a>
                     </div>
                 </section>
